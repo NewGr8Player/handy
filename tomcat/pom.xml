@@ -17,6 +17,7 @@
     <properties>
         <yaml.version>1.24</yaml.version>
         <fastjson.version>1.2.58</fastjson.version>
+        <dom4j.version>1.6.1</dom4j.version>
     </properties>
 
     <dependencies>
@@ -32,7 +33,12 @@
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
-
+        <!-- Dom4j -->
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>${dom4j.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

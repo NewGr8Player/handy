@@ -5,12 +5,10 @@ import com.xavier.tomcat.config.BaseConfig;
 import com.xavier.tomcat.util.YamlUtil;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.lang.String;
@@ -48,9 +46,24 @@ public class WebServer {
                                 }
                                 requestInfo.append("}");
 
-                                log.info("{}", requestInfo);
+                                log.info("Request:{}", requestInfo);
+
+                                StringBuilder response = new StringBuilder();
+
+                                String content = "<html><head><title>Index</title></head><body>OK!</body></html>";
+                                
+                                response.append("HTTP/1.1 200 OK").append("\r\n");
+                                response.append("Date: ").append(new Date()).append("\r\n");
+                                response.append("Content-Type: ").append("text/html").append(";charset=").append("UTF-8").append("\r\n");
+                                response.append("Content-Length: ").append(content.getBytes().length).append("\r\n");
+                                response.append("\r\n").append(content);
+
+                                OutputStream outputStream = request.getOutputStream();
+                                outputStream.write(response.toString().getBytes());
+                                outputStream.flush();
+
                             } catch (IOException e) {
-                                log.error("{}",e.getMessage());
+                                log.error("{}", e.getMessage());
                                 e.printStackTrace();
                             }
                         }

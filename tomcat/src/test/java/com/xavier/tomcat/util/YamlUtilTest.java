@@ -2,7 +2,6 @@ package com.xavier.tomcat.util;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 
 public class YamlUtilTest {
 

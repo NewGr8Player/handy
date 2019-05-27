@@ -21,7 +21,6 @@
         </encoder>
     </appender>
 
-    <!-- 时间滚动输出 level为 TRACE 日志 -->
     <appender name="TRACE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>TRACE</level>
@@ -37,7 +36,6 @@
         </encoder>
     </appender>
 
-    <!-- 时间滚动输出 level为 DEBUG 日志 -->
     <appender name="DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>DEBUG</level>
@@ -53,7 +51,6 @@
         </encoder>
     </appender>
 
-    <!-- 时间滚动输出 level为 WARN 日志 -->
     <appender name="TRACE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>WARN</level>
@@ -69,7 +66,6 @@
         </encoder>
     </appender>
 
-    <!-- 时间滚动输出 level为 INFO 日志 -->
     <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>INFO</level>
