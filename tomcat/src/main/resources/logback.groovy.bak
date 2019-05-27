@@ -1,0 +1,68 @@
+import ch.qos.logback.classic.encoder.PatternLayoutEncoder
+import ch.qos.logback.classic.filter.LevelFilter
+
+import java.nio.charset.Charset
+
+import static ch.qos.logback.classic.Level.*
+import static ch.qos.logback.core.spi.FilterReply.ACCEPT
+import static ch.qos.logback.core.spi.FilterReply.DENY
+
+def LOG_HOME = "./logs"
+def LOG_FILE_NAME = "%d{yyyy-MM-dd}.%i.log"
+def SPLIT_FILE_SIZE = "1MB"
+def FILE_LOG_PATTERN = "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level --- [%15.15thread] %-40.40logger{39} : %msg%n"
+
+appender("STDOUT", ConsoleAppender) {
+    filter(LevelFilter) {
+        level = INFO
+        onMatch = ACCEPT
+        onMismatch = DENY
+    }
+    encoder(PatternLayoutEncoder) {
+        pattern = FILE_LOG_PATTERN
+        charset = Charset.forName("utf-8")
+    }
+}
+appender("DEBUG", RollingFileAppender) {
+    filter(LevelFilter) {
+        level = DEBUG
+        onMatch = ACCEPT
+        onMismatch = DENY
+    }
+    rollingPolicy(TimeBasedRollingPolicy) {
+        fileNamePattern = LOG_HOME + "/debug/" + LOG_FILE_NAME
+        maxFileSize = SPLIT_FILE_SIZE
+    }
+    encoder(PatternLayoutEncoder) {
+        pattern = FILE_LOG_PATTERN
+    }
+}
+appender("INFO", RollingFileAppender) {
+    filter(LevelFilter) {
+        level = INFO
+        onMatch = ACCEPT
+        onMismatch = DENY
+    }
+    rollingPolicy(TimeBasedRollingPolicy) {
+        fileNamePattern = LOG_HOME + "/info/" + LOG_FILE_NAME
+        maxFileSize = SPLIT_FILE_SIZE
+    }
+    encoder(PatternLayoutEncoder) {
+        pattern = FILE_LOG_PATTERN
+    }
+}
+appender("ERROR", RollingFileAppender) {
+    filter(LevelFilter) {
+        level = ERROR
+        onMatch = ACCEPT
+        onMismatch = DENY
+    }
+    rollingPolicy(TimeBasedRollingPolicy) {
+        fileNamePattern = LOG_HOME + "/error/" + LOG_FILE_NAME
+        maxFileSize = SPLIT_FILE_SIZE
+    }
+    encoder(PatternLayoutEncoder) {
+        pattern = FILE_LOG_PATTERN
+    }
+}
+root(DEBUG, ["STDOUT", "DEBUG", "INFO", "ERROR"])

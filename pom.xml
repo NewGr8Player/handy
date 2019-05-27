@@ -7,11 +7,53 @@
     <artifactId>handy</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>handy</name>
+    <packaging>pom</packaging>
     <description>手写框架</description>
 
     <properties>
         <java.version>1.8</java.version>
+        <lombok.version>1.18.6</lombok.version>
+        <slf4j.version>1.7.7</slf4j.version>
+        <logback.version>1.2.3</logback.version>
+        <groovy.version>2.5.6</groovy.version>
     </properties>
+
+    <dependencies>
+        <!-- Slf4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <!-- Logback -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-access</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <!-- Groovy -->
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>${groovy.version}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
